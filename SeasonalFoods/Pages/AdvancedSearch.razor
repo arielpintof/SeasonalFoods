@@ -1,0 +1,42 @@
+﻿@page "/busqueda-avanzada"
+
+<MudContainer MaxWidth="MaxWidth.Medium" Class="d-flex flex-column gap-3 mt-3">
+    <h3 class="pl-2">Búsqueda Avanzada</h3>
+    <MudDivider></MudDivider>
+    <Filters></Filters>
+    @foreach (var item in FoodList)
+    {
+        <FoodItem Name="@item.Name" Variety="@item.Variety" Price="@item.Price"></FoodItem>
+    }
+    
+    
+</MudContainer>
+
+
+@code{
+
+    public List<FoodItemTemporal> FoodList = new()
+    {
+        new FoodItemTemporal{
+            Name = "Limón",
+            Variety = "Primera Amarillo",
+            Price = 1400
+        },
+        new FoodItemTemporal{
+            Name = "Limón",
+            Variety = "Primera Amarillo",
+            Price = 1400
+        },
+    };
+
+
+    public class FoodItemTemporal
+    {
+        public string Name { get; set; } = string.Empty;
+        public int Price { get; set; }
+        public string Variety { get; set; } = string.Empty;
+        public string LastUpdate { get; set; } = string.Empty;
+    }
+}
+
+
