@@ -1,0 +1,97 @@
+﻿@using SeasonalFoods.Enums
+@using System.Collections.Immutable
+
+<div class="container mt-2 mb-4">
+    <section>
+        <MudForm Model="_filtersDto">
+            <div class="d-flex flex-wrap gap-3">
+                <div style="width: auto; min-width: 200px;">
+                    <MudSelectExtended Margin="Margin.Dense" 
+                                       ItemCollection="FoodGroupsNames"
+                                       MultiSelection="true"
+                                       SearchBox="true"
+                                       SearchBoxAutoFocus="true"
+                                       T="string"
+                                       Label="Tipos de alimentos"
+                                       AnchorOrigin="Origin.BottomCenter"
+                                       Variant="Variant.Outlined"
+                                       SearchBoxClearable="true"
+                                       @bind-SelectedValues="_filtersDto.FoodGroups">
+                    </MudSelectExtended>
+                </div>
+
+                <div style="width: auto; min-width: 200px; ">
+                    <MudSelectExtended Margin="Margin.Dense" ItemCollection="SeasonNames"
+                                       T="string"
+                                       Label="Estación del año"
+                                       AnchorOrigin="Origin.BottomCenter"
+                                       Variant="Variant.Outlined">
+                    </MudSelectExtended>
+                </div>
+
+                <div style="width: auto; min-width: 200px; ">
+                    <MudSelectExtended ItemCollection="ShopPlacesNames"
+                                       MultiSelection="true"
+                                       T="string"
+                                       Label="Tipo de comercio"
+                                       AnchorOrigin="Origin.BottomCenter"
+                                       Variant="Variant.Outlined"
+                                       Margin="Margin.Dense">
+                    </MudSelectExtended>
+                </div>
+
+                <div style="width: auto; min-width: 200px; ">
+                    <MudSelectExtended ItemCollection="RegionsNames"
+                                       SearchBox="true"
+                                       SearchBoxAutoFocus="true"
+                                       T="string"
+                                       Label="Región"
+                                       AnchorOrigin="Origin.BottomCenter"
+                                       Variant="Variant.Outlined"
+                                       Margin="Margin.Dense">
+                    </MudSelectExtended>
+                </div>
+                <div style="width: auto; min-width: 150px; ">
+                    <MudSelectExtended ItemCollection="RegionsNames"
+                                       SearchBox="true"
+                                       SearchBoxAutoFocus="true"
+                                       T="string"
+                                       Label="Región"
+                                       AnchorOrigin="Origin.BottomCenter"
+                                       Variant="Variant.Outlined"
+                                       Margin="Margin.Dense">
+                    </MudSelectExtended>
+                </div>
+            </div>
+        </MudForm>
+    </section>
+</div>
+
+
+@code {
+
+    private static ICollection<string> FoodGroupsNames => IEnum<FoodGroups, FoodGroupToken>
+        .ReadableNameDictionary()
+        .Select(x => x.Key)
+        .Skip(1).ToImmutableList();
+
+    private static ICollection<string> SeasonNames => IEnum<Seasons, SeasonToken>
+        .ReadableNameDictionary()
+        .Select(x => x.Key)
+        .Skip(1).ToImmutableList();
+
+    private static ICollection<string> ShopPlacesNames => IEnum<ShopPlaces, ShopPlacesToken>
+        .ReadableNameDictionary()
+        .Select(x => x.Key)
+        .Skip(1).ToImmutableList();
+
+    private static ICollection<string> RegionsNames => IEnum<Regions, RegionToken>
+        .ReadableNameDictionary()
+        .Select(x => x.Key)
+        .Skip(1).ToImmutableList();
+
+
+    private FiltersDto _filtersDto = new();
+
+
+}
