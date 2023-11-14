@@ -1,0 +1,30 @@
+﻿
+<div class="d-flex flex-row px-2" style="height: 56px">
+     <div class="d-flex justify-content-between">
+          <div class="d-flex flex-row gap-2">
+               <img class="rounded-circle img-responsive" alt="avatar1" src="@Image" size=""/>
+               <div class="d-flex gap-1">
+                    <strong class="@GetSpanClass()">@Name </strong>
+                    <strong class="grey-color">@Variety</strong>
+               </div>
+          </div>
+          <span>$@Price</span>
+     </div>
+</div>
+
+@code {
+     [Parameter]
+     public string Name { get; set; } = string.Empty;
+     [Parameter]
+     public string Image { get; set; } = "https://cdn7.kiwilimon.com/brightcove/6838/640x640/6838.jpg.webp";
+
+     [Parameter]
+     public string Variety { get; set; } = string.Empty;
+
+     [Parameter]
+     public int Price { get; set; }
+     
+     [Parameter] public bool Hovered { get; set; }
+    
+     private string GetSpanClass() => Hovered ? "span-hovered" : "";
+}
