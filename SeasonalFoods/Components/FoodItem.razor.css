@@ -6,3 +6,15 @@ strong, span{
 .grey-color{
     color: #B9B4B4;
 }
+
+.image-container {
+    width: 56px;
+    height: 56px;
+    overflow: hidden;
+}
+
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Puedes ajustar 'cover' según tus necesidades */
+}
