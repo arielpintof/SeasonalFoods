@@ -6,7 +6,7 @@ namespace SeasonalFoods.Store.AdvancedSearch;
 [FeatureState]
 public class FilterState
 {
-    public FiltersDto Filters { get; }
+    public FiltersDto Filters { get; } = new();
     
     
     public FilterState(){}
