@@ -1,97 +1,114 @@
 ﻿@using SeasonalFoods.Enums
 @using System.Collections.Immutable
+@using Fluxor
+@using SeasonalFoods.Pages
+@using SeasonalFoods.Store.AdvancedSearch
+@inject IDispatcher Dispatcher
+@inject IState<FilterState> FiltersState
+@inherits Fluxor.Blazor.Web.Components.FluxorComponent
+
 
 <div class="container mt-2 mb-4">
     <section>
-        <MudForm Model="_filtersDto">
-            <div class="d-flex flex-wrap gap-3">
-                <div style="width: auto; min-width: 200px;">
-                    <MudSelectExtended Margin="Margin.Dense" 
-                                       ItemCollection="FoodGroupsNames"
-                                       MultiSelection="true"
-                                       SearchBox="true"
-                                       SearchBoxAutoFocus="true"
-                                       T="string"
-                                       Label="Tipos de alimentos"
-                                       AnchorOrigin="Origin.BottomCenter"
-                                       Variant="Variant.Outlined"
-                                       SearchBoxClearable="true"
-                                       @bind-SelectedValues="_filtersDto.FoodGroups">
-                    </MudSelectExtended>
-                </div>
-
-                <div style="width: auto; min-width: 200px; ">
-                    <MudSelectExtended Margin="Margin.Dense" ItemCollection="SeasonNames"
-                                       T="string"
-                                       Label="Estación del año"
-                                       AnchorOrigin="Origin.BottomCenter"
-                                       Variant="Variant.Outlined">
-                    </MudSelectExtended>
-                </div>
-
-                <div style="width: auto; min-width: 200px; ">
-                    <MudSelectExtended ItemCollection="ShopPlacesNames"
-                                       MultiSelection="true"
-                                       T="string"
-                                       Label="Tipo de comercio"
-                                       AnchorOrigin="Origin.BottomCenter"
-                                       Variant="Variant.Outlined"
-                                       Margin="Margin.Dense">
-                    </MudSelectExtended>
-                </div>
-
-                <div style="width: auto; min-width: 200px; ">
-                    <MudSelectExtended ItemCollection="RegionsNames"
-                                       SearchBox="true"
-                                       SearchBoxAutoFocus="true"
-                                       T="string"
-                                       Label="Región"
-                                       AnchorOrigin="Origin.BottomCenter"
-                                       Variant="Variant.Outlined"
-                                       Margin="Margin.Dense">
-                    </MudSelectExtended>
-                </div>
-                <div style="width: auto; min-width: 150px; ">
-                    <MudSelectExtended ItemCollection="RegionsNames"
-                                       SearchBox="true"
-                                       SearchBoxAutoFocus="true"
-                                       T="string"
-                                       Label="Región"
-                                       AnchorOrigin="Origin.BottomCenter"
-                                       Variant="Variant.Outlined"
-                                       Margin="Margin.Dense">
-                    </MudSelectExtended>
-                </div>
+        <div class="d-flex flex-wrap gap-3">
+            <div style="width: auto; min-width: 200px;">
+                <MudSelectExtended Margin="Margin.Dense"
+                                   ItemCollection="FoodGroupsNames"
+                                   MultiSelection="true"
+                                   SearchBox="true"
+                                   SearchBoxAutoFocus="true"
+                                   T="string"
+                                   Label="Tipos de alimentos"
+                                   AnchorOrigin="Origin.BottomCenter"
+                                   Variant="Variant.Outlined"
+                                   SearchBoxClearable="true"
+                                   @bind-SelectedValues="FiltersDto.FoodGroups">
+                </MudSelectExtended>
             </div>
-        </MudForm>
+
+            <div style="width: auto; min-width: 200px; ">
+                <MudSelectExtended Margin="Margin.Dense"
+                                   ItemCollection="SeasonNames"
+                                   MultiSelection="false"
+                                   T="string"
+                                   Label="Estación del año"
+                                   AnchorOrigin="Origin.BottomCenter"
+                                   Variant="Variant.Outlined"
+                                   @bind-Value="FiltersDto.Season">
+                </MudSelectExtended>
+            </div>
+
+            <div style="width: auto; min-width: 200px; ">
+                <MudSelectExtended ItemCollection="ShopPlacesNames"
+                                   MultiSelection="true"
+                                   T="string"
+                                   Label="Tipo de comercio"
+                                   AnchorOrigin="Origin.BottomCenter"
+                                   Variant="Variant.Outlined"
+                                   Margin="Margin.Dense"
+                                   @bind-SelectedValues="FiltersDto.ShopPlace">
+                </MudSelectExtended>
+            </div>
+
+            <div style="width: auto; min-width: 200px; ">
+                <MudSelectExtended ItemCollection="RegionsNames"
+                                   SearchBox="true"
+                                   SearchBoxAutoFocus="true"
+                                   T="string"
+                                   Label="Región"
+                                   AnchorOrigin="Origin.BottomCenter"
+                                   Variant="Variant.Outlined"
+                                   Margin="Margin.Dense"
+                                   @bind-Value="FiltersDto.Region">
+                </MudSelectExtended>
+            </div>
+
+            <MudButton Variant="Variant.Filled"
+                       Size="Size.Small"
+                       Color="Color.Primary"
+                       DisableElevation="true"
+                       Style="text-transform: none; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700;">
+                Aplicar filtros
+            </MudButton>
+        </div>
     </section>
+    
 </div>
 
 
 @code {
-
+    
     private static ICollection<string> FoodGroupsNames => IEnum<FoodGroups, FoodGroupToken>
-        .ReadableNameDictionary()
-        .Select(x => x.Key)
-        .Skip(1).ToImmutableList();
+        .NonNullValues()
+        .Select(x => x.ReadableName)
+        .ToList();
 
     private static ICollection<string> SeasonNames => IEnum<Seasons, SeasonToken>
         .ReadableNameDictionary()
         .Select(x => x.Key)
-        .Skip(1).ToImmutableList();
+        .ToList();
 
     private static ICollection<string> ShopPlacesNames => IEnum<ShopPlaces, ShopPlacesToken>
         .ReadableNameDictionary()
         .Select(x => x.Key)
-        .Skip(1).ToImmutableList();
+        .ToImmutableList();
 
     private static ICollection<string> RegionsNames => IEnum<Regions, RegionToken>
         .ReadableNameDictionary()
         .Select(x => x.Key)
-        .Skip(1).ToImmutableList();
+        .ToImmutableList();
 
 
-    private FiltersDto _filtersDto = new();
+    private FiltersDto FiltersDto  => FiltersState.Value.Filters;
+
+    private void UpdateFilters()
+    {
+        var action = new UpdateFilterAction(FiltersDto);
+        Dispatcher.Dispatch(action);
+    }
+
+    
+    
 
 
 }
