@@ -4,8 +4,6 @@ namespace SeasonalFoods.Enums;
 
 public class FoodGroups : SmartEnum<FoodGroups>, IEnum<FoodGroups, FoodGroupToken>
 {
-    public static readonly FoodGroups None =
-        new(nameof(None), (int)FoodGroupToken.None, "");
 
     public static readonly FoodGroups Fruits =
         new(nameof(Fruits), (int)FoodGroupToken.Fruits, "Frutas");
@@ -33,7 +31,6 @@ public class FoodGroups : SmartEnum<FoodGroups>, IEnum<FoodGroups, FoodGroupToke
 
 public enum FoodGroupToken
 {
-    None = 0,
     Fruits = 1,
     Vegetables = 2,
     Grains = 3,

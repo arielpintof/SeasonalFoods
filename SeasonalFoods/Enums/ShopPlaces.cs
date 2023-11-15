@@ -4,9 +4,6 @@ namespace SeasonalFoods.Enums;
 
 public class ShopPlaces : SmartEnum<ShopPlaces>, IEnum<ShopPlaces, ShopPlacesToken>
 {
-    public static readonly ShopPlaces None =
-        new(nameof(None), (int)ShopPlacesToken.None, "");
-    
     public static readonly ShopPlaces Market =
         new(nameof(Market), (int)ShopPlacesToken.Market, "Feria Libre");
     
@@ -26,7 +23,6 @@ public class ShopPlaces : SmartEnum<ShopPlaces>, IEnum<ShopPlaces, ShopPlacesTok
 
 public enum ShopPlacesToken
 {
-    None,
     Market,
     Butchery,
     Bakery

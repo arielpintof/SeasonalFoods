@@ -1,7 +1,6 @@
 ﻿using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
 using Ardalis.SmartEnum;
-using static System.StringComparer;
 
 namespace SeasonalFoods.Enums;
 
@@ -11,7 +10,7 @@ public interface IEnum<out T, TEnum>
     where TEnum : struct, System.Enum, IConvertible
 {
     private static readonly IReadOnlyCollection<TEnum> Tokens = 
-        System.Enum.GetValues<TEnum>().ToImmutableList();
+        System.Enum.GetValues<TEnum>().OrderBy(e => Convert.ToInt32(e)).ToImmutableList();
 
     string ReadableName { get; }
 
@@ -31,4 +30,28 @@ public interface IEnum<out T, TEnum>
 
     static T FromReadableName(string readableName) =>
         ReadableNameDictionary().TryGetValue(readableName, out var value) ? value : throw new KeyNotFoundException();
+}
+
+public interface IComposableEnum<out TSelf, out TOther>
+    where TSelf : SmartEnum<TSelf>, IComposableEnum<TSelf, TOther>
+    where TOther : SmartEnum<TOther>
+{
+    protected TOther Category { get; }
+
+    static IReadOnlyCollection<TSelf> ByCategory(TOther category) =>
+        SmartEnum<TSelf>.List.Where(e => e.Category == category).ToImmutableList();
+}
+
+public interface IHierarchicalEnum<out T, TEnum> : IEnum<T, TEnum>
+    where T : SmartEnum<T>, IHierarchicalEnum<T, TEnum>
+    where TEnum : struct, System.Enum
+{
+    bool IsTopCategory { get; }
+    T? Category { get; }
+
+    static IReadOnlyCollection<T> TopCategories() =>
+        Values().Where(e => e.IsTopCategory).ToImmutableList();
+
+    static IReadOnlyCollection<T> ByCategory(T category) =>
+        Values().Where(e => e.Category != null && e.Category == category).ToImmutableList();
 }
