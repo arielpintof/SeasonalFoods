@@ -4,7 +4,8 @@ namespace SeasonalFoods.Enums;
 
 public class Seasons : SmartEnum<Seasons>, IEnum<Seasons, SeasonToken>
 {
-
+    public static readonly Seasons None =
+        new(nameof(None), (int)SeasonToken.None, string.Empty);
     public static readonly Seasons Summer =
         new(nameof(Summer), (int)SeasonToken.Summer, "Verano");
     
@@ -29,8 +30,9 @@ public class Seasons : SmartEnum<Seasons>, IEnum<Seasons, SeasonToken>
 
 public enum SeasonToken
 {
-    Summer = 1,
-    Winter = 2,
-    Spring = 3,
-    Autumn = 4
+    None,
+    Summer,
+    Winter,
+    Spring ,
+    Autumn
 }
