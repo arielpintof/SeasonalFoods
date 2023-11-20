@@ -3,6 +3,8 @@
 @using Fluxor
 @using SeasonalFoods.Pages
 @using SeasonalFoods.Store.AdvancedSearch
+@using Color = MudBlazor.Color
+@using Size = MudBlazor.Size
 @inject IDispatcher Dispatcher
 @inject IState<FilterState> FiltersState
 @inherits Fluxor.Blazor.Web.Components.FluxorComponent
@@ -64,11 +66,11 @@
             </div>
 
             <MudButton Variant="Variant.Filled"
-                       Size="Size.Small"
+                       Size="Size.Medium"
                        Color="Color.Primary"
                        DisableElevation="true"
                        Style="text-transform: none; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700;">
-                Aplicar filtros
+                Buscar
             </MudButton>
         </div>
     </section>
@@ -79,24 +81,28 @@
 @code {
     
     private static ICollection<string> FoodGroupsNames => IEnum<FoodGroups, FoodGroupToken>
-        .NonNullValues()
-        .Select(x => x.ReadableName)
+        .TokenDictionary()
+        .Select(x => x.Value.ReadableName)
+        .Skip(1)
         .ToList();
 
     private static ICollection<string> SeasonNames => IEnum<Seasons, SeasonToken>
-        .ReadableNameDictionary()
-        .Select(x => x.Key)
+        .TokenDictionary()
+        .Select(x => x.Value.ReadableName)
+        .Skip(1)
         .ToList();
 
     private static ICollection<string> ShopPlacesNames => IEnum<ShopPlaces, ShopPlacesToken>
-        .ReadableNameDictionary()
-        .Select(x => x.Key)
-        .ToImmutableList();
+        .TokenDictionary()
+        .Select(x => x.Value.ReadableName)
+        .Skip(1)
+        .ToList();
 
     private static ICollection<string> RegionsNames => IEnum<Regions, RegionToken>
-        .ReadableNameDictionary()
-        .Select(x => x.Key)
-        .ToImmutableList();
+        .TokenDictionary()
+        .Select(x => x.Value.ReadableName)
+        .Skip(1)
+        .ToList();
 
 
     private FiltersDto FiltersDto  => FiltersState.Value.Filters;
@@ -106,9 +112,6 @@
         var action = new UpdateFilterAction(FiltersDto);
         Dispatcher.Dispatch(action);
     }
-
     
-    
-
 
 }

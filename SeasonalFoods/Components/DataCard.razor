@@ -1,0 +1,57 @@
+﻿@using System.Globalization
+@page "/DataCard"
+
+<MudPaper Class="pa-8 mt-8"
+          Elevation="0"
+          Style="box-shadow:  6px -6px 12px #fafafa,
+                              -6px 6px 12px #ffffff;">
+    <div class="align-center d-flex justify-content-between"
+         style="height: 100%">
+        <div class="d-flex flex-column">
+            <span Class="light-bold title mb-3">@Title</span>
+            <h4 Class="mb-4 strong-bold size">
+                $@Price.ToString("N0", CultureInfo.InvariantCulture)
+            </h4>
+        </div>
+        <svg width="154" height="66" viewBox="0 0 154 66" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g filter="url(#filter0_d_38_15)">
+                <path d="M2 62L4.24242 57.7573C6.48485 53.5147 10.9697 45.0293 15.4545 39.3542C19.9394 33.6791 24.4242 30.8143 28.9091 33.014C33.3939 35.2136 37.8788 42.4778 42.3636 43.7873C46.8485 45.0968 51.3333 40.4516 55.8182 39.1067C60.303 37.7618 64.7879 39.7171 69.2727 36.0146C73.7576 32.312 78.2424 22.9515 82.7273 19.5786C87.2121 16.2057 91.697 18.8204 96.1818 23.709C100.667 28.5976 105.152 35.7602 109.636 35.8641C114.121 35.968 118.606 29.0132 123.091 21.7382C127.576 14.4631 132.061 6.86777 136.545 3.8253C141.03 0.78283 145.515 2.29323 147.758 3.04843L150 3.80363" stroke="#B71A1A"/>
+            </g>
+            <defs>
+                <filter id="filter0_d_38_15" x="0.557983" y="0.5" width="152.602" height="64.7336" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                    <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                    <feOffset dx="1" dy="1"/>
+                    <feGaussianBlur stdDeviation="1"/>
+                    <feComposite in2="hardAlpha" operator="out"/>
+                    <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 0.075 0 0 0 0 0.075 0 0 0 0.25 0"/>
+                    <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_38_15"/>
+                    <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_38_15" result="shape"/>
+                </filter>
+            </defs>
+        </svg>
+    </div>
+</MudPaper>
+
+@code {
+
+    [Parameter]
+    public string Title { get; set; } = string.Empty;
+
+    [Parameter]
+    public int Price { get; set; }
+
+}
+
+<style>
+    .title{
+        font-weight: bold;
+        color: var(--grey-light);
+    }
+    .strong-bold {
+        font-weight: bolder;
+    }
+    .size{
+        font-size: 48px;
+    }
+</style>

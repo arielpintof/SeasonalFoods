@@ -1,0 +1,21 @@
+﻿<h1>LOL</h1>
+
+
+@code {
+    
+    private ApexChartOptions<PriceByRegion.Order> options;
+    
+    protected override void OnInitialized()
+    {
+        options = new ApexChartOptions<PriceByRegion.Order>
+        {
+            PlotOptions = new PlotOptions
+            {
+                Bar = new PlotOptionsBar
+                {
+                    Horizontal = true
+                }
+            }
+        };
+    }
+}

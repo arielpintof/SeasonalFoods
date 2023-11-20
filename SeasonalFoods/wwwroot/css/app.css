@@ -1,5 +1,6 @@
 :root{
     --grey-normal: #494747;
+    --grey-light: #898989;
 }
 
 html, body {
@@ -7,7 +8,7 @@ html, body {
     --grey-normal: #494747;
 }
 
-html, body, h1, h2, h3, a, button, p, th, td, span, label, strong{
+html, body, h1, h2, h3, h4, a, button, p, th, td, span, label, strong{
     font-family: 'Plus Jakarta Sans', sans-serif;
 }
 h1:focus {

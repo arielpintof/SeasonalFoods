@@ -1,0 +1,8 @@
+﻿<div class="py-5 px-3" style="box-shadow:  6px -6px 12px #fafafa,
+                                           -6px 6px 12px #ffffff;">
+    @ChildContent
+</div>
+
+@code {
+    [Parameter] public RenderFragment ChildContent { get; set; }
+}

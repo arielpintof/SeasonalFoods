@@ -1,0 +1,37 @@
+﻿@page "/food"
+<MudContainer MaxWidth="MaxWidth.Large" Class="mt-5">
+    <TitleSection Class="mb-6"></TitleSection>
+    
+    <MudGrid>
+        <MudItem md="4"
+                 sm="12"
+                 xs="12">
+            <DataCard Title="Precio Promedio" Price="1400"/>
+        </MudItem>
+        <MudItem md="4"
+                 sm="12"
+                 xs="12">
+            <DataCard Title="Precio Mínimo" Price="1400"/>
+        </MudItem>
+        <MudItem md="4"
+                 sm="12"
+                 xs="12">
+            <DataCard Title="Precio Máximo" Price="1400"/>
+        </MudItem>
+        <MudItem md="6"
+                 sm="12"
+                 xs="12">
+            <PriceByRegion/>
+        </MudItem>
+        <MudItem md="6"
+                 sm="12"
+                 xs="12">
+            <PriceByRegion/>
+        </MudItem>
+    </MudGrid>
+</MudContainer>
+
+
+@code {
+
+}

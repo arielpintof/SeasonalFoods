@@ -1,31 +1,35 @@
 ﻿@using SeasonalFoods.Enums
-<div class="d-flex flex-row px-2 pr-10 my-2" style="height: 56px">
-    <div class="d-flex justify-space-between flex-grow-1">
-        <div class="d-flex flex-row gap-3">
-            <div class="image-container">
-                <img alt="avatar1" src="@Image"/>
-            </div>
-            <div class="d-flex flex-column gap-1">
-                <div class="d-flex gap-1">
-                    <strong class="@GetSpanClass()">@Name </strong>
-                    <strong class="grey-color">@Variety</strong>
-                </div>
-                <div class="d-flex gap-1">
-                    <span class="grey-color"
-                          style="font-size: 14px !important;">
-                        Última actualización: @LastUpdate
-                    </span>
-                    <span class="grey-color"
-                          style="font-size: 14px !important;">
-                        Región de Coquimbo
-                    </span>
-                </div>
-            </div>
 
+<div class="food-container">
+    <div class="d-flex flex-row py-4 pr-10">
+        <div class="d-flex justify-space-between flex-grow-1">
+            <div class="d-flex flex-row gap-3">
+                <div class="image-container">
+                    <img alt="food-image" src="@Image"/>
+                </div>
+                <div class="d-flex flex-column gap-1">
+                    <div class="d-flex gap-1">
+                        <strong>@Name </strong>
+                        <strong class="grey-color">@Variety</strong>
+                    </div>
+                    <div class="d-flex gap-1">
+                        <span class="grey-color bi bi-calendar2"
+                              style="font-size: 14px !important;">
+                            Última actualización: @LastUpdate
+                        </span>
+                        <span class="grey-color bi bi-geo-alt"
+                              style="font-size: 14px !important;">
+                            Región de Coquimbo
+                        </span>
+                    </div>
+                </div>
+    
+            </div>
+            <span>$@Price</span>
         </div>
-        <span>$@Price</span>
     </div>
 </div>
+
 
 @code {
 
@@ -46,6 +50,4 @@
 
     [Parameter]
     public bool Hovered { get; set; }
-
-    private string GetSpanClass() => Hovered ? "span-hovered" : "";
 }
