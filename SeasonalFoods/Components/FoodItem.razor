@@ -5,11 +5,11 @@
         <div class="d-flex justify-space-between flex-grow-1">
             <div class="d-flex flex-row gap-3">
                 <div class="image-container">
-                    <img alt="avatar1" src="@Image"/>
+                    <img alt="food-image" src="@Image"/>
                 </div>
                 <div class="d-flex flex-column gap-1">
                     <div class="d-flex gap-1">
-                        <strong class="@GetSpanClass()">@Name </strong>
+                        <strong>@Name </strong>
                         <strong class="grey-color">@Variety</strong>
                     </div>
                     <div class="d-flex gap-1">
@@ -50,6 +50,4 @@
 
     [Parameter]
     public bool Hovered { get; set; }
-
-    private string GetSpanClass() => Hovered ? "span-hovered" : "";
 }

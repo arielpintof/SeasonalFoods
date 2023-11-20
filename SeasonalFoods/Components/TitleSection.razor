@@ -1,0 +1,53 @@
+﻿@page "/section"
+@using SeasonalFoods.Pages
+
+<section class="d-flex gap-3 @Class align-items-center">
+    <div class="image-container">
+        <img alt="avatar1" src="@FoodItem.Img"/>
+    </div>
+    
+    <div class="d-flex flex-column text-section">
+        <h2>@FoodItem.Name, @FoodItem.Variety</h2>
+        <span>Región de Coquimbo</span>
+    </div>
+</section>
+
+
+@code {
+
+    [Parameter]
+    public string Class { get; set; } = string.Empty;
+
+    public static AdvancedSearch.FoodItemTemporal FoodItem => new AdvancedSearch.FoodItemTemporal
+    {
+        Name = "Limón",
+        Variety = "Primera Amarillo",
+        Price = 1400,
+        LastUpdate = "10 de Noviembre",
+        Img = "https://www.nfrut.cl/wp-content/uploads/2018/09/Limon.jpg"
+    };
+
+}
+
+<style>
+    .text-section h2{
+        font-weight: bold;
+        color: var(--grey-normal);
+        font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .text-section span{
+        font-weight: bold;
+        color: var(--grey-light);
+    }
+    .image-container {
+        width: 56px;
+        height: 56px;
+        overflow: hidden;
+    }
+    
+    .image-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Puedes ajustar 'cover' según tus necesidades */
+    }
+</style>
