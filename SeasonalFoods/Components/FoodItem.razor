@@ -1,6 +1,7 @@
 ﻿@using SeasonalFoods.Enums
+@inject NavigationManager NavigationManager
 
-<div class="food-container">
+<div class="food-container" @onclick="NavigateToFood">
     <div class="d-flex flex-row py-4 pr-10">
         <div class="d-flex justify-space-between flex-grow-1">
             <div class="d-flex flex-row gap-3">
@@ -50,4 +51,10 @@
 
     [Parameter]
     public bool Hovered { get; set; }
+
+
+    private void NavigateToFood()
+    {
+        NavigationManager.NavigateTo("/food");
+    }
 }

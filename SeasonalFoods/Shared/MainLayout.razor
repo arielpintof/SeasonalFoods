@@ -1,39 +1,61 @@
 ﻿@inherits LayoutComponentBase
+@inject NavigationManager NavigationManager
 
-<MudThemeProvider/>
+<MudThemeProvider Theme="MyCustomTheme"/>
 <MudDialogProvider/>
 <MudSnackbarProvider/>
 
 <div class="d-flex flex-column page">
-    
-
     <main>
-        <div class="top-row px-4">
-            <h1>SINONIMOUS</h1>
-            <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
+        <div class="top-row d-flex justify-content-center">
+            <div class="d-flex px-3 justify-content-between align-items-center " style="width:1170px;">
+                <span class="fw-bold fs-5" @onclick="NavigateToIndex">SeasonalFoods</span>
+                <FoodSearchBar></FoodSearchBar>
+            </div>
+
         </div>
 
         <div class="">
             @Body
         </div>
     </main>
-    
+
     <footer>
-    <div class="container-3 d-flex align-items-center text-center justify-content-center">
-        <ul>
-            <li>
-                <a href="#">BENJAMIN</a>
-            </li>
-            <li>
-                <a href="#">Contact</a>
-            </li>
-            <li>
-                <a href="#">Pagina de Inicio</a>
-            </li>
-            <li>
-                <p>&copy; 2023 Nutrifoods Company. Todos los derechos reservados.</p>
-            </li>
-        </ul>
-    </div>
-</footer>
+        <div class="container-3 d-flex align-items-center text-center justify-content-center">
+            <ul>
+                <li>
+                    <a href="#">BENJAMIN</a>
+                </li>
+                <li>
+                    <a href="#">Contact</a>
+                </li>
+                <li>
+                    <a href="#">Pagina de Inicio</a>
+                </li>
+                <li>
+                    <p>&copy; 2023 Nutrifoods Company. Todos los derechos reservados.</p>
+                </li>
+            </ul>
+        </div>
+    </footer>
 </div>
+
+
+@code{
+
+    MudTheme MyCustomTheme = new MudTheme()
+    {
+        Palette = new PaletteLight()
+        {
+            Primary = "#CD5C5C",
+            Secondary = Colors.Green.Accent4,
+            AppbarBackground = Colors.Red.Default,
+        }
+    };
+
+    private void NavigateToIndex()
+    {
+        NavigationManager.NavigateTo("/");
+    }
+
+}

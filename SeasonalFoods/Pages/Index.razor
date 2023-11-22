@@ -1,4 +1,5 @@
-﻿@page "/"
+﻿@inject NavigationManager NavigationManager
+@page "/"
 
 
 <div class="landing-page">
@@ -8,7 +9,7 @@
                 <h1 class="fw-bolder">Descubre el mundo de los alimentos de temporada con SeaseonalFoods.</h1>
                 <p>Encuentra información actualizada sobre precios y temporadas de productos regionales. Planifica tus compras de manera inteligente y disfruta de la frescura mientras ahorras. sino
                 </p>
-                <button class="fw-bolder">Descubrir alimentos</button>
+                <button class="fw-bolder" @onclick="NavigateToAdvancedSearch" >Descubrir alimentos</button>
             </div>
             <div class="image">
                 <img src="Cambios-que-revolucionaron-el-consumo-de-alimentos-PhotoRoom.png-PhotoRoom.png">
@@ -37,4 +38,14 @@
         </div>
     </div>
 </div>
+
+
+@code{
+
+    private void NavigateToAdvancedSearch()
+    {
+        NavigationManager.NavigateTo("/busqueda-avanzada");
+    }
+
+}
 

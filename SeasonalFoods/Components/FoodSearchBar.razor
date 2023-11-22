@@ -1,0 +1,54 @@
+﻿@using Color = MudBlazor.Color
+
+<div style="width: 300px">
+    <MudAutocomplete T="string"
+                     Variant="Variant.Outlined"
+                     Label="Buscar un alimento" 
+                     @bind-Value="Value1" 
+                     SearchFunc="@Search1"
+                     ResetValueOnEmptyText="@_resetValueOnEmptyText"
+                     CoerceText="@_coerceText" 
+                     CoerceValue="@_coerceValue"
+                     AdornmentIcon="@Icons.Material.Filled.Search" 
+                     AdornmentColor="Color.Primary"
+                     Margin="Margin.Dense"
+                     Class="rounded-pill"
+                     Style="border-radius: 20px;"/>
+</div>
+
+
+
+@code {
+    private bool _resetValueOnEmptyText;
+    private bool _coerceText;
+    private bool _coerceValue;
+    private string Value1 { get; set; } = string.Empty;
+    private string Value2 { get; set; } = string.Empty;
+
+    private string[] _foods =
+    {
+        "Manzana", "Limón", "Coliflor", "Lechuga", "Repollo", "Tomate", 
+    };
+
+    private async Task<IEnumerable<string>> Search1(string value)
+    {
+    // In real life use an asynchronous function for fetching data from an api.
+        await Task.Delay(5);
+
+    // if text is null or empty, show complete list
+        if (string.IsNullOrEmpty(value))
+            return _foods;
+        return _foods.Where(x => x.Contains(value, StringComparison.InvariantCultureIgnoreCase));
+    }
+
+    private async Task<IEnumerable<string>> Search2(string value)
+    {
+    // In real life use an asynchronous function for fetching data from an api.
+        await Task.Delay(5);
+
+    // if text is null or empty, don't return values (drop-down will not open)
+        if (string.IsNullOrEmpty(value))
+            return new string[0];
+        return _foods.Where(x => x.Contains(value, StringComparison.InvariantCultureIgnoreCase));
+    }
+}
