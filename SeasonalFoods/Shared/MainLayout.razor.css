@@ -13,10 +13,19 @@ main {
     background-image: linear-gradient(180deg, rgb(5, 39, 103) 0%, #3a0647 70%);
 }
 
+.container-3 {
+    margin: 0;
+    padding: 0;
+    height: 250px;
+    width: 100%;
+    background: indianred;
+    color: #FFFFFF;
+}
+
 .top-row {
-    background-color: #FFFAF1;
+    background-color: indianred;
     border-bottom: 1px solid #d6d5d5;
-    justify-content: flex-end;
+    justify-content: flex-start;
     height: 3.5rem;
     display: flex;
     align-items: center;
@@ -36,6 +45,8 @@ main {
         overflow: hidden;
         text-overflow: ellipsis;
     }
+    
+    
 
 @media (max-width: 640.98px) {
     .top-row:not(.auth) {
