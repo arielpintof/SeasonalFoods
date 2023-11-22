@@ -1,13 +1,39 @@
-﻿<h1>LOL</h1>
+﻿@using SeasonalFoods.Enums
+
+<DemoContainer>
+    <ApexChart TItem="HistoricalData"
+               Options=options>
+    
+        <ApexPointSeries TItem="HistoricalData"
+                         Items="Prices"
+                         Name="Precio Promedio"
+                         XValue="@(e => e.ShopPlaces.ReadableName)"
+                         YAggregate="@(e => e.Sum(e => (decimal)e.AveragePrice))"
+                         SeriesType="SeriesType.Bar"
+                         Color="#005ba3"
+        />
+    </ApexChart>
+</DemoContainer>
 
 
 @code {
+    private List<HistoricalData> Prices { get; set; } = GetData();
     
-    private ApexChartOptions<PriceByRegion.Order> options;
+    public static List<HistoricalData> GetData()
+    {
+        var data = new List<HistoricalData>();
+        data.Add(new HistoricalData{ ShopPlaces = ShopPlaces.Market, AveragePrice = 800});
+        data.Add(new HistoricalData { ShopPlaces = ShopPlaces.Bakery, AveragePrice = 650 });
+        data.Add(new HistoricalData { ShopPlaces = ShopPlaces.Butchery, AveragePrice = 1200 });
+
+        return data;
+    } 
+    
+    private ApexChartOptions<HistoricalData> options;
     
     protected override void OnInitialized()
     {
-        options = new ApexChartOptions<PriceByRegion.Order>
+        options = new ApexChartOptions<HistoricalData>
         {
             PlotOptions = new PlotOptions
             {
