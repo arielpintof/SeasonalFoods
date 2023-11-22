@@ -1,0 +1,27 @@
+﻿<DemoContainer>
+    <ApexChart TItem="PriceByRegion.Order"
+               Title="Order Net Value">
+
+        <ApexPointSeries TItem="PriceByRegion.Order"
+                         Items="Orders"
+                         Name="Gross Value"
+                         SeriesType="SeriesType.Line"
+                         XValue="@(e => e.Country)"
+                         YAggregate="@(e => e.Sum(e => e.GrossValue))"
+                         OrderByDescending="e=>e.Y" />
+
+        <ApexPointSeries TItem="PriceByRegion.Order"
+                         Items="Orders"
+                         Name="Net Value"
+                         SeriesType="SeriesType.Line"
+                         XValue="@(e => e.Country)"
+                         YAggregate="@(e => e.Sum(e => e.NetValue))"
+                         OrderByDescending="e=>e.Y" />
+    </ApexChart>
+</DemoContainer>
+
+
+@code {
+    private List<PriceByRegion.Order> Orders { get; set; } = PriceByRegion.GetOrders();
+
+}
