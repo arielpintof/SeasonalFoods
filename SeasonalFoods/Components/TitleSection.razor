@@ -1,14 +1,15 @@
 ﻿@page "/section"
 @using SeasonalFoods.Pages
+@using SeasonalFoods.Enums
 
 <section class="d-flex gap-3 @Class align-items-center">
     <div class="image-container">
-        <img alt="avatar1" src="@FoodItem.Img"/>
+        <img alt="avatar1" src="https://www.nfrut.cl/wp-content/uploads/2018/09/Limon.jpg"/>
     </div>
     
     <div class="d-flex flex-column text-section">
-        <h2>@FoodItem.Name, @FoodItem.Variety</h2>
-        <span>Región de Coquimbo</span>
+        <h2>@FoodName, @QualityName</h2>
+        <span>Región de @RegionName</span>
     </div>
 </section>
 
@@ -17,6 +18,27 @@
 
     [Parameter]
     public string Class { get; set; } = string.Empty;
+    
+    [Parameter]
+    public string FoodName { get; set; } = string.Empty;
+
+    [Parameter]
+    public int Quality { get; set; }
+    
+    [Parameter]
+    public int Region { get; set; }
+
+
+
+    string RegionName => IEnum<Regions, RegionToken>
+        .TokenDictionary()
+        .Select(e => e.Value.ReadableName)
+        .ElementAt(Region);
+
+    string QualityName => IEnum<Qualities, QualityToken>
+        .TokenDictionary()
+        .Select(e => e.Value.ReadableName)
+        .ElementAt(Quality);
 
     public static AdvancedSearch.FoodItemTemporal FoodItem => new AdvancedSearch.FoodItemTemporal
     {

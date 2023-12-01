@@ -1,14 +1,15 @@
 ﻿using Fluxor;
 using SeasonalFoods.Dto;
+using SeasonalFoods.Pages;
 
 namespace SeasonalFoods.Store.AdvancedSearch;
 
 [FeatureState]
 public class FoodState
 {
-    public ICollection<FoodSummarized> FoodSummarizeds { get; } = null!;
+    public List<Test.TemporalFood1> FoodSummarizeds { get; } = new();
 
-    public FoodState(ICollection<FoodSummarized> foodSummarizeds)
+    public FoodState(List<Test.TemporalFood1> foodSummarizeds)
     {
         FoodSummarizeds = foodSummarizeds;
     }

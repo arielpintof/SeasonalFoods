@@ -1,20 +1,23 @@
 ﻿using System.Runtime.InteropServices.JavaScript;
+using System.Text.Json.Serialization;
 
 namespace SeasonalFoods.Dto;
 
 public class History
 {
+    [JsonPropertyName("date")]
     public DateTime Date { get; set; }
+    
+    [JsonPropertyName("week")]
     public int Week { get; set; }
-    public int Year { get; set; }
-    public string Region { get; set; } = string.Empty;
-    public string Sector { get; set; } = string.Empty;
-    public string PointType { get; set; } = string.Empty;
-    public string Variety { get; set; } = string.Empty;
-    public string Quality { get; set; } = string.Empty;
-    public string Unit { get; set; } = string.Empty;
-    public int MinPrice { get; set; }
+    
+    [JsonPropertyName("mean_price")]
     public float MeanPrice { get; set; }
+    
+    [JsonPropertyName("max_price")]
     public int MaxPrice { get; set; }
     
-}
+    [JsonPropertyName("min_price")]
+    public int MinPrice { get; set; }
+    
+} 

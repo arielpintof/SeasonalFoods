@@ -10,7 +10,28 @@ public class AdvancedSearchService : IAdvancedSearchService
     {
         _httpClient = httpClient;
     }
+    
+    public async Task<HttpResponseMessage?> GetFoodHistory(int region, string foodName, int quality)
+    {
+        return await _httpClient.GetAsync(
+            $"seasonal-foods/api/v1/year/2023/product/{foodName}/?region={region}&quality={quality}");
+        
+            
+    }
 
+    public async Task<HttpResponseMessage?> GetFoodHistoryLastWeeks(int region, string foodName, int quality)
+    {
+        return await _httpClient.GetAsync(
+            $"seasonal-foods/api/v1/product/{foodName}/quality/{quality}/region/{region}");
+    }
+    
+   
+    
+    public async Task<HttpResponseMessage?> GetFoodRegionHistory(string foodName, int quality)
+    {
+        return await _httpClient.GetAsync(
+            $"seasonal-foods/api/v1/product/{foodName}/quality/{quality}");
+    }
     public async Task<HttpResponseMessage?> GetFood(int year, int? region, int? category, 
         int? quality, int? store)
     {

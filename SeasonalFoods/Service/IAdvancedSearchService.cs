@@ -4,4 +4,11 @@ public interface IAdvancedSearchService
 {
     Task<HttpResponseMessage?> GetFood
         (int year, int? region, int? category, int? quality, int? store);
+
+    Task<HttpResponseMessage?> GetFoodHistoryLastWeeks(int region, string foodName, int quality);
+
+    Task<HttpResponseMessage?> GetFoodRegionHistory(string foodName, int quality);
+
+    Task<HttpResponseMessage?> GetFoodHistory(int region, string foodName, int quality);
+    
 }

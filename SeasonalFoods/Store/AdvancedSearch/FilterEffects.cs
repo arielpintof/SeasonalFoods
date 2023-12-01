@@ -1,27 +1,26 @@
-﻿using Fluxor;
-using SeasonalFoods.Dto;
+﻿using System.Net.Http.Json;
+using Fluxor;
+using SeasonalFoods.Pages;
 using SeasonalFoods.Service;
 
 namespace SeasonalFoods.Store.AdvancedSearch;
 
 
-public class FilterEffects
+public class FilterEffects(IAdvancedSearchService advanceSearchSearch, IState<FilterState> filters)
 {
-    private readonly IAdvancedSearchService _advancedSearchSearch;
-    private readonly IState<FilterState> _filters;
-    public FilterEffects(IAdvancedSearchService advanceSearchSearch, IState<FilterState> filters)
-    {
-        _advancedSearchSearch = advanceSearchSearch;
-        _filters = filters;
-    }
-
-    [EffectMethod]
+    [EffectMethod(typeof(UpdateFilterAction))]
     public async Task SetFoodList(IDispatcher dispatcher)
     {
-        //Llamar a la api con los filtros de FilterState
+        var filterValue = filters.Value.Filters;
+        var response = await advanceSearchSearch.GetFood(2023,
+                filterValue.Region?.Value ?? null,
+                filterValue.FoodGroups?.Value ?? null,
+                filterValue.Qualities?.Value ?? null,
+                filterValue.ShopPlace?.Value ??  null);
         
-        //Despachar un loadAction con la FoodListState
-        dispatcher.Dispatch(new LoadFoodAction(new List<FoodSummarized>()));
+        var content = await response!.Content.ReadFromJsonAsync<List<Test.TemporalFood1>>();
+        
+        dispatcher.Dispatch(new LoadFoodAction(content));
     }
     
 }

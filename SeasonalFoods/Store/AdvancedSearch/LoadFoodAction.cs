@@ -1,12 +1,13 @@
 ﻿using SeasonalFoods.Dto;
+using SeasonalFoods.Pages;
 
 namespace SeasonalFoods.Store.AdvancedSearch;
 
 public class LoadFoodAction
 {
-    public ICollection<FoodSummarized> FoodSummarizeds { get; }
+    public List<Test.TemporalFood1> FoodSummarizeds { get; }
 
-    public LoadFoodAction(ICollection<FoodSummarized> foodSummarizeds)
+    public LoadFoodAction(List<Test.TemporalFood1> foodSummarizeds)
     {
         FoodSummarizeds = foodSummarizeds;
     }

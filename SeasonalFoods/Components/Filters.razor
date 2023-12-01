@@ -96,7 +96,7 @@
                                    @bind-Value="FiltersDto.Region">
                     @foreach (var region in RegionsList)
                     {
-                        <MudSelectItemExtended Value="@region" Text="@region.ReadableName"></MudSelectItemExtended>
+                        <MudSelectItemExtended Value="@region" Text="@region.CompleteName"></MudSelectItemExtended>
                     }
                 </MudSelectExtended>
             </div>
@@ -104,6 +104,7 @@
             <MudButton Variant="Variant.Filled"
                        Class="rounded-pill"
                        Size="Size.Medium"
+                       OnClick="(e) => UpdateFilters()"
                        Color="Color.Primary"
                        DisableElevation="true"
                        Style="background-color: indianred; text-transform: none; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700;">
@@ -153,9 +154,9 @@
 
     private void UpdateFilters()
     {
+        Console.WriteLine($"Enviando datos...Tipo: {FiltersDto.FoodGroups}");
         var action = new UpdateFilterAction(FiltersDto);
         Dispatcher.Dispatch(action);
-        Console.Write("Llamada a la API...");
     }
 
 

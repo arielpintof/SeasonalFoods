@@ -11,16 +11,22 @@ public class FoodGroups : SmartEnum<FoodGroups>, IEnum<FoodGroups, FoodGroupToke
         new(nameof(Fruits), (int)FoodGroupToken.Fruits, "Frutas");
 
     public static readonly FoodGroups Vegetables =
-        new(nameof(Vegetables), (int)FoodGroupToken.Vegetables, "Vegetales");
+        new(nameof(Vegetables), (int)FoodGroupToken.Vegetables, "Hortalizas");
 
-    public static readonly FoodGroups Seeds =
-        new(nameof(Seeds), (int)FoodGroupToken.Seeds, "Semillas");
+    public static readonly FoodGroups Bovine =
+        new(nameof(Bovine), (int)FoodGroupToken.Bovine, "Bovina");
     
-    public static readonly FoodGroups Grains =
-        new(nameof(Grains), (int)FoodGroupToken.Grains, "Granos");
+    public static readonly FoodGroups Meat =
+        new(nameof(Meat), (int)FoodGroupToken.Meat, "Carne");
     
-    public static readonly FoodGroups Meats =
-        new(nameof(Meats), (int)FoodGroupToken.Meats, "Carnes");
+    public static readonly FoodGroups Dairies =
+        new(nameof(Dairies), (int)FoodGroupToken.Dairies, "Lácteos");
+    
+    public static readonly FoodGroups Bread =
+        new(nameof(Bread), (int)FoodGroupToken.Bread, "Pan");
+    
+    public static readonly FoodGroups Groceries =
+        new(nameof( Groceries), (int)FoodGroupToken. Groceries, "Abarrotes");
     private FoodGroups(string name, int value, string readableName) :
         base(name, value)
     {
@@ -36,7 +42,9 @@ public enum FoodGroupToken
     None,
     Fruits,
     Vegetables,
-    Grains,
-    Seeds, 
-    Meats 
+    Bovine,
+    Meat,
+    Dairies,
+    Bread, 
+    Groceries
 }
