@@ -1,4 +1,5 @@
-﻿using Fluxor;
+﻿using System.Runtime.InteropServices.ComTypes;
+using Fluxor;
 
 namespace SeasonalFoods.Store.AdvancedSearch;
 
@@ -6,8 +7,11 @@ namespace SeasonalFoods.Store.AdvancedSearch;
 public class FiltersReducer
 {
     [ReducerMethod]
-    public static FilterState UpdateFilters(FilterState state, UpdateFilterAction action) => 
-        new FilterState(action.Filters);
+    public static FilterState UpdateFilters(FilterState state, UpdateFilterAction action)
+    {
+        return new FilterState(action.Filters);
+    }
+        
     
     
 }

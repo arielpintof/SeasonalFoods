@@ -1,10 +1,18 @@
 ﻿@using SeasonalFoods.Enums
 @using System.Collections.Immutable
+@using Ardalis.SmartEnum
 @using Fluxor
 @using SeasonalFoods.Pages
 @using SeasonalFoods.Store.AdvancedSearch
 @using Color = MudBlazor.Color
 @using Size = MudBlazor.Size
+@using Fluxor
+@using Microsoft.AspNetCore.Components
+@using MudBlazor
+@using MudExtensions
+@using SeasonalFoods.Components
+@using SeasonalFoods.Enums
+@using SeasonalFoods.Store.AdvancedSearch
 @inject IDispatcher Dispatcher
 @inject IState<FilterState> FiltersState
 @inherits Fluxor.Blazor.Web.Components.FluxorComponent
@@ -15,59 +23,88 @@
         <div class="d-flex flex-wrap gap-3">
             <div style="width: auto; min-width: 200px;">
                 <MudSelectExtended Margin="Margin.Dense"
-                                   ItemCollection="FoodGroupsNames"
-                                   MultiSelection="true"
+                                   T="Enums.FoodGroups"
                                    SearchBox="true"
                                    SearchBoxAutoFocus="true"
-                                   T="string"
                                    Label="Tipos de alimentos"
                                    AnchorOrigin="Origin.BottomCenter"
                                    Variant="Variant.Outlined"
                                    SearchBoxClearable="true"
-                                   @bind-SelectedValues="FiltersDto.FoodGroups">
+                                   @bind-Value="FiltersDto.FoodGroups">
+                    @foreach (var foodGroup in FoodGroupsList)
+                    {
+                        <MudSelectItemExtended Value="@foodGroup" Text="@foodGroup.ReadableName"></MudSelectItemExtended>
+                    }
+
                 </MudSelectExtended>
             </div>
 
             <div style="width: auto; min-width: 200px; ">
                 <MudSelectExtended Margin="Margin.Dense"
-                                   ItemCollection="SeasonNames"
+                                   T="Enums.Seasons"
                                    MultiSelection="false"
-                                   T="string"
                                    Label="Estación del año"
                                    AnchorOrigin="Origin.BottomCenter"
                                    Variant="Variant.Outlined"
                                    @bind-Value="FiltersDto.Season">
+                    @foreach (var season in SeasonsList)
+                    {
+                        <MudSelectItemExtended Value="@season" Text="@season.ReadableName"></MudSelectItemExtended>
+                    }
+
                 </MudSelectExtended>
             </div>
 
             <div style="width: auto; min-width: 200px; ">
-                <MudSelectExtended ItemCollection="ShopPlacesNames"
-                                   MultiSelection="true"
-                                   T="string"
-                                   Label="Tipo de comercio"
+                <MudSelectExtended Label="Tipo de comercio"
+                                   T="Enums.ShopPlaces"
                                    AnchorOrigin="Origin.BottomCenter"
                                    Variant="Variant.Outlined"
                                    Margin="Margin.Dense"
-                                   @bind-SelectedValues="FiltersDto.ShopPlace">
+                                   @bind-Value="FiltersDto.ShopPlace">
+                    @foreach (var shopPlace in ShopPlacesList)
+                    {
+                        <MudSelectItemExtended Value="@shopPlace" Text="@shopPlace.ReadableName"></MudSelectItemExtended>
+                    }
+
                 </MudSelectExtended>
             </div>
 
             <div style="width: auto; min-width: 200px; ">
-                <MudSelectExtended ItemCollection="RegionsNames"
-                                   SearchBox="true"
+                <MudSelectExtended Label="Calidad"
+                                   T="Enums.Qualities"
+                                   AnchorOrigin="Origin.BottomCenter"
+                                   Variant="Variant.Outlined"
+                                   Margin="Margin.Dense"
+                                   @bind-Value="FiltersDto.Qualities">
+                    @foreach (var quality in QualitiesList)
+                    {
+                        <MudSelectItemExtended Value="@quality" Text="@quality.ReadableName"></MudSelectItemExtended>
+                    }
+
+                </MudSelectExtended>
+            </div>
+
+            <div style="width: auto; min-width: 200px; ">
+                <MudSelectExtended SearchBox="true"
                                    SearchBoxAutoFocus="true"
-                                   T="string"
                                    Label="Región"
+                                   T="Enums.Regions"
                                    AnchorOrigin="Origin.BottomCenter"
                                    Variant="Variant.Outlined"
                                    Margin="Margin.Dense"
                                    @bind-Value="FiltersDto.Region">
+                    @foreach (var region in RegionsList)
+                    {
+                        <MudSelectItemExtended Value="@region" Text="@region.CompleteName"></MudSelectItemExtended>
+                    }
                 </MudSelectExtended>
             </div>
 
             <MudButton Variant="Variant.Filled"
                        Class="rounded-pill"
                        Size="Size.Medium"
+                       OnClick="(e) => UpdateFilters()"
                        Color="Color.Primary"
                        DisableElevation="true"
                        Style="background-color: indianred; text-transform: none; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700;">
@@ -75,44 +112,52 @@
             </MudButton>
         </div>
     </section>
-    
+
 </div>
 
 
 @code {
+
+    private FiltersDto FiltersDto => FiltersState.Value.Filters;
+
+    private static ICollection<FoodGroups> FoodGroupsList => IEnum<FoodGroups, FoodGroupToken>
+        .TokenDictionary()
+        .Select(x => x.Value)
+        .Skip(1)
+        .ToList();
+
+    private static ICollection<Qualities> QualitiesList => IEnum<Qualities, QualityToken>
+        .TokenDictionary()
+        .Select(x => x.Value)
+        .Skip(1)
+        .ToList();
+
+    private static ICollection<Seasons> SeasonsList => IEnum<Seasons, SeasonToken>
+        .TokenDictionary()
+        .Select(x => x.Value)
+        .Skip(1)
+        .ToList();
+
+    private static ICollection<ShopPlaces> ShopPlacesList => IEnum<ShopPlaces, ShopPlacesToken>
+        .TokenDictionary()
+        .Select(x => x.Value)
+        .Skip(1)
+        .ToList();
+
+    private static ICollection<Regions> RegionsList => IEnum<Regions, RegionToken>
+        .TokenDictionary()
+        .Select(x => x.Value)
+        .Skip(1)
+        .ToList();
     
-    private static ICollection<string> FoodGroupsNames => IEnum<FoodGroups, FoodGroupToken>
-        .TokenDictionary()
-        .Select(x => x.Value.ReadableName)
-        .Skip(1)
-        .ToList();
 
-    private static ICollection<string> SeasonNames => IEnum<Seasons, SeasonToken>
-        .TokenDictionary()
-        .Select(x => x.Value.ReadableName)
-        .Skip(1)
-        .ToList();
-
-    private static ICollection<string> ShopPlacesNames => IEnum<ShopPlaces, ShopPlacesToken>
-        .TokenDictionary()
-        .Select(x => x.Value.ReadableName)
-        .Skip(1)
-        .ToList();
-
-    private static ICollection<string> RegionsNames => IEnum<Regions, RegionToken>
-        .TokenDictionary()
-        .Select(x => x.Value.ReadableName)
-        .Skip(1)
-        .ToList();
-
-
-    private FiltersDto FiltersDto  => FiltersState.Value.Filters;
 
     private void UpdateFilters()
     {
+        Console.WriteLine($"Enviando datos...Tipo: {FiltersDto.FoodGroups}");
         var action = new UpdateFilterAction(FiltersDto);
         Dispatcher.Dispatch(action);
     }
-    
+
 
 }

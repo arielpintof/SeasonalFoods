@@ -8,60 +8,40 @@ public class Regions : SmartEnum<Regions>, IEnum<Regions, RegionToken>
         new(nameof(None), (int)RegionToken.None, string.Empty, string.Empty);
 
     public static readonly Regions AricaParinacota =
-        new(nameof(AricaParinacota), (int)RegionToken.AricaParinacota, "Arica y Parinacota", "AP");
-
-    public static readonly Regions Tarapaca =
-        new(nameof(Tarapaca), (int)RegionToken.Tarapaca, "Tarapacá", "TA");
-
-    public static readonly Regions Antofagasta =
-        new(nameof(Antofagasta), (int)RegionToken.Antofagasta, "Antofagasta", "AN");
-
-    public static readonly Regions Atacama =
-        new(nameof(Atacama), (int)RegionToken.Atacama, "Atacama", "AT");
+        new(nameof(AricaParinacota), (int)RegionToken.AricaParinacota, "Arica y Parinacota", "Región de Arica y Parinacota");
 
     public static readonly Regions Coquimbo =
-        new(nameof(Coquimbo), (int)RegionToken.Coquimbo, "Coquimbo", "CO");
+        new(nameof(Coquimbo), (int)RegionToken.Coquimbo, "Coquimbo", "Región de Coquimbo");
 
     public static readonly Regions Valparaiso =
-        new(nameof(Valparaiso), (int)RegionToken.Valparaiso, "Valparaíso", "VA");
+        new(nameof(Valparaiso), (int)RegionToken.Valparaiso, "Valparaíso", "Región de Valparaiso");
 
     public static readonly Regions Santiago =
-        new(nameof(Santiago), (int)RegionToken.Santiago, "Metropolitana de Santiago", "RM");
-
-    public static readonly Regions OHiggins =
-        new(nameof(OHiggins), (int)RegionToken.OHiggins, "Libertador General Bernardo O'Higgins", "LI");
-
+        new(nameof(Santiago), (int)RegionToken.Santiago, "Metropolitana de Santiago", "Región Metropolitana de Santiago");
+    
     public static readonly Regions Maule =
-        new(nameof(Maule), (int)RegionToken.Maule, "Maule", "ML");
+        new(nameof(Maule), (int)RegionToken.Maule, "Maule", "Región del Maule");
 
     public static readonly Regions Nuble =
-        new(nameof(Nuble), (int)RegionToken.Nuble, "Ñuble", "NB");
+        new(nameof(Nuble), (int)RegionToken.Nuble, "Ñuble", "Región de Ñuble");
 
     public static readonly Regions Biobio =
-        new(nameof(Biobio), (int)RegionToken.Biobio, "Biobío", "BI");
+        new(nameof(Biobio), (int)RegionToken.Biobio, "Biobío", "Región del BioBio");
 
     public static readonly Regions Araucania =
-        new(nameof(Araucania), (int)RegionToken.Araucania, "La Araucanía", "AR");
-
-    public static readonly Regions LosRios =
-        new(nameof(LosRios), (int)RegionToken.LosRios, "Los Ríos", "LR");
-
+        new(nameof(Araucania), (int)RegionToken.Araucania, "La Araucanía", "Región de la Araucanía");
+    
     public static readonly Regions LosLagos =
-        new(nameof(LosLagos), (int)RegionToken.LosLagos, "Los Lagos", "LL");
+        new(nameof(LosLagos), (int)RegionToken.LosLagos, "Los Lagos", "Región de los Lagos");
+    
 
-    public static readonly Regions Aysen =
-        new(nameof(Aysen), (int)RegionToken.Aysen, "Aysén del General Carlos Ibáñez del Campo", "AI");
-
-    public static readonly Regions Magallanes =
-        new(nameof(Magallanes), (int)RegionToken.Magallanes, "Magallanes y de la Antártica Chilena", "MA");
-
-    private Regions(string name, int value, string readableName, string abbreviation) : base(name, value)
+    private Regions(string name, int value, string completeName, string readableName) : base(name, value)
     {
         ReadableName = readableName;
-        Abbreviation = abbreviation;
+        CompleteName = completeName;
     }
 
-    public string Abbreviation { get; }
+    public string CompleteName { get; }
     public string ReadableName { get; }
 }
 
@@ -69,19 +49,12 @@ public enum RegionToken
 {
     None,
     AricaParinacota,
-    Tarapaca,
-    Antofagasta,
-    Atacama,
     Coquimbo,
     Valparaiso,
     Santiago,
-    OHiggins,
     Maule,
     Nuble,
     Biobio,
     Araucania,
-    LosRios,
     LosLagos,
-    Aysen,
-    Magallanes
 }

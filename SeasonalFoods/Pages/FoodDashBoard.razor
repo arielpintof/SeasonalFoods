@@ -1,42 +1,100 @@
-﻿@page "/food"
-<MudContainer MaxWidth="MaxWidth.Large" Class="mt-5">
-    <TitleSection Class="mb-6"></TitleSection>
-
-    <MudGrid>
-        <MudItem md="4"
-                 sm="12"
-                 xs="12">
-            <DataCard Title="Precio Promedio" Price="1400"/>
-        </MudItem>
-        <MudItem md="4"
-                 sm="12"
-                 xs="12">
-            <DataCard Title="Precio Mínimo" Price="1400"/>
-        </MudItem>
-        <MudItem md="4"
-                 sm="12"
-                 xs="12">
-            <DataCard Title="Precio Máximo" Price="1400"/>
-        </MudItem>
-        <MudItem md="6"
-                 sm="12"
-                 xs="12">
-            <PriceByRegion/>
-        </MudItem>
-        <MudItem md="6"
-                 sm="12"
-                 xs="12">
-            <PriceByShopPlace/>
-        </MudItem>
-        <MudItem md="12"
-                 sm="12"
-                 xs="12">
-            <PriceByWeek/>
-        </MudItem>
-    </MudGrid>
-</MudContainer>
+﻿@inject IAdvancedSearchService AdvancedSearchService
+@using SeasonalFoods.Service
+@using System.Text.Json.Serialization
+@using SeasonalFoods.Dto
+@using PriceByRegion = SeasonalFoods.Components.PriceByRegion
+@page "/alimentos/{FoodName}/{Quality:int}/{Region:int}"
 
 
-@code {
 
+
+@if (HistoryPrices.Any())
+{
+    <MudContainer MaxWidth="MaxWidth.Large" Class="mt-5">
+        <TitleSection Class="mb-6"
+                      FoodName="@FoodName"
+                      Region="@Region"
+                      Quality="@Quality"></TitleSection>
+
+        <MudGrid>
+            <MudItem md="4"
+                     sm="12"
+                     xs="12">
+                <DataCard Title="Precio Promedio" Price="@Convert.ToInt32(HistoryPrices.FirstOrDefault().MeanPrice)"/>
+            </MudItem>
+            <MudItem md="4"
+                     sm="12"
+                     xs="12">
+                <DataCard Title="Precio Mínimo" Price="@HistoryPrices.FirstOrDefault().MinPrice"/>
+            </MudItem>
+            <MudItem md="4"
+                     sm="12"
+                     xs="12">
+                <DataCard Title="Precio Máximo" Price="HistoryPrices.FirstOrDefault().MaxPrice"/>
+            </MudItem>
+            <MudItem md="6"
+                     sm="12"
+                     xs="12">
+                <PriceByRegion Collection="@RegionHistoryPrices"/>
+            </MudItem>
+            <MudItem md="6"
+                     sm="12"
+                     xs="12">
+                <PriceByShopPlace Collection="@ShopPlacesPrices"/>
+            </MudItem>
+            <MudItem md="12"
+                     sm="12"
+                     xs="12">
+                <PriceByWeek Collection="@ShopPlacesPrices"/>
+            </MudItem>
+        </MudGrid>
+    </MudContainer>
+}
+
+
+
+@code { 
+    [Parameter]
+    public string FoodName { get; set; } = string.Empty;
+    
+    [Parameter]
+    public int Region { get; set; }
+    
+    [Parameter]
+    public int Quality { get; set; }
+
+    private List<History> HistoryPrices { get; set; } = new();
+    
+    private List<PriceInRegions> RegionHistoryPrices { get; set; } = new();
+    
+    private List<PriceInRegions> ShopPlacesPrices { get; set; } = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        await Task.WhenAll(GetHistoryPrices(), GetRegionHistory(), GetShopPlacesPrices());
+        
+    }
+
+    async Task GetHistoryPrices()
+    {
+        var response = await AdvancedSearchService.GetFoodHistory(Region, FoodName, Quality);
+        var content = await response?.Content.ReadFromJsonAsync<List<History>>()!;
+        HistoryPrices = content.OrderByDescending(e => e.Week).ToList();
+    }
+    
+    async Task GetRegionHistory()
+    {
+        var response = await AdvancedSearchService.GetFoodRegionHistory(FoodName, Quality);
+        var content = await response?.Content.ReadFromJsonAsync<List<PriceInRegions>>()!;
+        RegionHistoryPrices = content;
+    }
+    
+    async Task GetShopPlacesPrices()
+    {
+        var response = await AdvancedSearchService.GetFoodHistoryLastWeeks(Region, FoodName, Quality);
+        var content = await response?.Content.ReadFromJsonAsync<List<PriceInRegions>>()!;
+        ShopPlacesPrices = content;
+    }
+    
 }

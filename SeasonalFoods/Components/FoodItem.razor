@@ -16,17 +16,17 @@
                     <div class="d-flex gap-1">
                         <span class="grey-color bi bi-calendar2"
                               style="font-size: 14px !important;">
-                            Última actualización: @LastUpdate
+                            @ShopPlace
                         </span>
                         <span class="grey-color bi bi-geo-alt"
                               style="font-size: 14px !important;">
-                            Región de Coquimbo
+                            @Region
                         </span>
                     </div>
                 </div>
-    
+
             </div>
-            <span>$@Price</span>
+            <span>$@Convert.ToInt32(Price)</span>
         </div>
     </div>
 </div>
@@ -47,14 +47,32 @@
     public string LastUpdate { get; set; } = string.Empty;
 
     [Parameter]
-    public int Price { get; set; }
+    public string Region { get; set; } = string.Empty;
+
+    [Parameter]
+    public string Quality { get; set; } = string.Empty;
+
+    [Parameter]
+    public string ShopPlace { get; set; } = string.Empty;
+
+    [Parameter]
+    public decimal Price { get; set; }
 
     [Parameter]
     public bool Hovered { get; set; }
 
+    int QualityInt => IEnum<Qualities, QualityToken>
+        .FromReadableName(Quality)
+        .Value;
+    
+    int RegionInt => IEnum<Regions, RegionToken>
+        .FromReadableName(Region)
+        .Value;
 
     private void NavigateToFood()
     {
-        NavigationManager.NavigateTo("/food");
+        NavigationManager.NavigateTo($"/alimentos/{Name}/{QualityInt}/{RegionInt}");
     }
+    
+
 }

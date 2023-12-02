@@ -1,4 +1,10 @@
-﻿@page "/busqueda-avanzada"
+﻿@inject IState<FoodState> FoodState
+@inject IState<FilterState> FilterState
+@using SeasonalFoods.Store.AdvancedSearch
+@inherits Fluxor.Blazor.Web.Components.FluxorComponent
+
+@page "/busqueda-avanzada"
+
 
 <MudContainer MaxWidth="MaxWidth.Medium" Class="d-flex flex-column gap-3 my-10">
     <div class="d-flex flex-column pl-2 gap-3">
@@ -7,14 +13,17 @@
     </div>
     <Filters></Filters>
 
-    @foreach (var item in _foodList)
+
+    @foreach (var item in FoodState.Value.FoodSummarizeds)
     {
         <FoodItem Name="@item.Name"
-                  Variety="@item.Variety"
+                  Quality="@item.Quality"
                   Price="@item.Price"
-                  Image="@item.Img"
-                  LastUpdate="@item.LastUpdate"/>
+                  Region="@item.Region"
+                  ShopPlace="@item.ShopPlace"/>
     }
+
+
 </MudContainer>
 
 
