@@ -12,7 +12,51 @@
     "url": "aceite vegetal.png"
   },
   {
-    "name": "aceituna",
+    "name": "aceituna negra (tercera)",
+    "url": "aceituna.jpg"
+  },
+  {
+    "name": "aceituna negra (segunda)",
+    "url": "aceituna.jpg"
+  },
+  {
+    "name": "aceituna negra (primera)",
+    "url": "aceituna.jpg"
+  },
+  {
+    "name": "aceituna negra (extra)",
+    "url": "aceituna.jpg"
+  },
+  {
+    "name": "aceituna sevillana (primera)",
+    "url": "aceituna.jpg"
+  },
+  {
+    "name": "aceituna sevillana (segunda)",
+    "url": "aceituna.jpg"
+  },
+  {
+    "name": "aceituna sevillana (tercera)",
+    "url": "aceituna.jpg"
+  },
+  {
+    "name": "aceituna sevillana (extra)",
+    "url": "aceituna.jpg"
+  },
+  {
+    "name": "aceituna amarga (segunda)",
+    "url": "aceituna.jpg"
+  },
+  {
+    "name": "aceituna amarga (primera)",
+    "url": "aceituna.jpg"
+  },
+  {
+    "name": "aceituna amarga (tercera)",
+    "url": "aceituna.jpg"
+  },
+  {
+    "name": "aceituna amarga (extra)",
     "url": "aceituna.jpg"
   },
   {
@@ -84,7 +128,11 @@
     "url": "cerdo lomo.png"
   },
   {
-    "name": "cerdo pulpa",
+    "name": "cerdo pulpa c/hueso",
+    "url": "cerdo pulpa.png"
+  },
+  {
+    "name": "cerdo pulpa s/hueso",
     "url": "cerdo pulpa.png"
   },
   {
@@ -172,7 +220,7 @@
     "url": "haba.jpg"
   },
   {
-    "name": "hallula integral",
+    "name": "hallulla integral",
     "url": "hallula integral.png"
   },
   {
@@ -184,7 +232,15 @@
     "url": "hallulla especial.png"
   },
   {
+    "name": "harina sin polvos de hornear",
+    "url": "harina.png"
+  },
+  {
     "name": "harina",
+    "url": "harina.png"
+  },
+  {
+    "name": "Harina con polvos de hornear",
     "url": "harina.png"
   },
   {
@@ -205,6 +261,10 @@
   },
   {
     "name": "leche en polvo descremada",
+    "url": "leche en polvo descremada.png"
+  },
+  {
+    "name": "leche en polvo entera",
     "url": "leche en polvo descremada.png"
   },
   {
@@ -308,15 +368,15 @@
     "url": "pavo osobuco.png"
   },
   {
-    "name": "pavo pechuga",
+    "name": "pavo pechuga s/hueso",
     "url": "pavo pechuga.png"
   },
   {
-    "name": "pavo truto ala",
+    "name": "pavo trutro ala",
     "url": "pavo truto ala.png"
   },
   {
-    "name": "pavo truto corto",
+    "name": "pavo trutro corto",
     "url": "pavo truto corto.png"
   },
   {
@@ -352,7 +412,11 @@
     "url": "pollo pechuga deshuesada.png"
   },
   {
-    "name": "pollo truto entero",
+    "name": "pollo pechuga",
+    "url": "pollo pechuga deshuesada.png"
+  },
+  {
+    "name": "pollo trutro entero",
     "url": "pollo truto entero.png"
   },
   {
@@ -444,7 +508,7 @@
     "url": "sobrecostilla.png"
   },
   {
-    "name": "spaghetti",
+    "name": "spaghetti N°5",
     "url": "spaghetti.jpg"
   },
   {
