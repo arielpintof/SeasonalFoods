@@ -31,7 +31,8 @@ ul {
 .container-2 {
     margin: 0;
     padding: 0;
-    height: 300px;
+    height: fit-content;
+    min-height: 300px;
     width: 100%;
     background: indianred;
     align-items: center;
@@ -56,7 +57,6 @@ ul {
     border: 0;
     border-radius: 20px;
     padding: 12px 30px;
-    margin-top: 30px;
     cursor: pointer;
     background: #FFFFFF;
     color: indianred;

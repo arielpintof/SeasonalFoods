@@ -1,5 +1,10 @@
 ﻿@inject NavigationManager NavigationManager
 @page "/"
+@using SeasonalFoods.Enums
+@using SeasonalFoods.Service
+@using Color = MudBlazor.Color
+@using SeasonalFoods.Dto
+@inject IAdvancedSearchService AdvancedSearchService
 
 
 <div class="landing-page">
@@ -7,9 +12,10 @@
         <div class="container">
             <div class="info">
                 <h1 class="fw-bolder">Descubre el mundo de los alimentos de temporada con SeasonalFoods.</h1>
-                <p>Encuentra información actualizada sobre precios y temporadas de productos regionales. Planifica tus compras de manera inteligente y disfruta de la frescura mientras ahorras. sino
+                <p>
+                    Encuentra información actualizada sobre precios y temporadas de productos regionales. Planifica tus compras de manera inteligente y disfruta de la frescura mientras ahorras. sino
                 </p>
-                <button class="fw-bolder" @onclick="NavigateToAdvancedSearch" >Descubrir alimentos</button>
+                <button class="fw-bolder" @onclick="NavigateToAdvancedSearch">Descubrir alimentos</button>
             </div>
             <div class="image">
                 <img src="Cambios-que-revolucionaron-el-consumo-de-alimentos-PhotoRoom.png-PhotoRoom.png">
@@ -17,12 +23,44 @@
         </div>
     </div>
 </div>
-<div class="container-2 d-flex align-items-center text-center">
+<div class="container-2 py-9 d-flex align-items-center text-center">
     <div class="">
         <h2 class="fw-bold">Explora la variedad de alimentos por regiones</h2>
         <h3>Descubre las opciones más convenientes.</h3>
-        <h4>¡Encuentra las mejores alimentos para tu familia!</h4>
-        <button class="boton">VISUALIZAR</button>
+        <div class="d-flex gap-3 py-4 align-items-center">
+            <MudSelectExtended Label="Región"
+                               T="Enums.Regions"
+                               Color="Color.Primary"
+                               AnchorOrigin="Origin.BottomCenter"
+                               Variant="Variant.Filled"
+                               Margin="Margin.Dense"
+                               @bind-Value="Region">
+                @foreach (var region in RegionsList)
+                {
+                    <MudSelectItemExtended Value="@region" Text="@region.CompleteName"></MudSelectItemExtended>
+                }
+            </MudSelectExtended>
+            <button @onclick="GetPrices" class="boton fw-bolder">Explorar</button>
+
+        </div>
+        @if (SeasonalFoodByRegion.Any())
+        {
+            var col = SeasonalFoodByRegion
+                .GroupBy(f => f.Name)
+                .Select(g => new
+                {
+                    Nombre = g.Key,
+                    Price = g.Min(f => f.Price)
+                });
+            <div class="d-flex flex-row flex-grow-1 gap-3">
+                @foreach (var grupo in col)
+                {
+                <FoodCard Name="@grupo.Nombre"></FoodCard>
+                }
+            </div>
+        }
+
+
     </div>
 </div>
 <div class="landing-page">
@@ -41,11 +79,33 @@
 
 
 @code{
+    public Regions? Region { get; set; }
+
+    private List<Test.TemporalFood1> SeasonalFoodByRegion { get; set; } = new();
 
     private void NavigateToAdvancedSearch()
     {
         NavigationManager.NavigateTo("/busqueda-avanzada");
     }
 
-}
+    private static ICollection<Regions> RegionsList => IEnum<Regions, RegionToken>
+        .TokenDictionary()
+        .Select(x => x.Value)
+        .Skip(1)
+        .ToList();
 
+
+    async Task GetPrices()
+    {
+        SeasonalFoodByRegion = new List<Test.TemporalFood1>();
+        var region = IEnum<Regions, RegionToken>.FromReadableName(Region.ReadableName).Value;
+        var response = await AdvancedSearchService.GetSeasonalFoodByRegion(region);
+        var content = await response?.Content.ReadFromJsonAsync<List<Test.TemporalFood1>>()!;
+        SeasonalFoodByRegion = content;
+    }
+
+
+
+
+
+}

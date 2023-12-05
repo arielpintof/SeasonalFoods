@@ -9,6 +9,8 @@ public interface IAdvancedSearchService
 
     Task<HttpResponseMessage?> GetFoodRegionHistory(string foodName, int quality);
 
-   
-    
+    Task<HttpResponseMessage?> GetSeasonalFoodByRegion(int region);
+
+
+
 }

@@ -56,4 +56,10 @@ public class AdvancedSearchService : IAdvancedSearchService
         
         return await _httpClient.GetAsync(urlBuilder.ToString());
     }
+
+    public async Task<HttpResponseMessage?> GetSeasonalFoodByRegion(int region)
+    {
+        return await _httpClient.GetAsync(
+            $"seasonal-foods/api/v1/foods_search/year/2023/?region={region}&in_season=true");
+    }
 }

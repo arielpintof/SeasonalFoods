@@ -1,0 +1,22 @@
+﻿<MudPaper Class="py-3 px-3" Style="max-width: 200px">
+    <MudStack>
+        <div class="image-container">
+            <img class="rounded" alt="@Image" src="@Image"/>
+        </div>
+        <span class="fw-bold">@Name</span>
+        <span>@Variety</span>
+    </MudStack>
+</MudPaper>
+
+@code {
+
+    [Parameter]
+    public string Name { get; set; } = string.Empty;
+
+
+    public string Image => $"imagenes-alimentos/{Name}.jpg";
+
+    [Parameter]
+    public string Variety { get; set; } = string.Empty;
+
+}

@@ -2,6 +2,7 @@
 @using System.Text
 @using System.Globalization
 @using System.Net
+@using SeasonalFoods.Dto
 @inject NavigationManager NavigationManager
 @inject HttpClient Http
 
@@ -99,8 +100,7 @@
         {
             return $"/imagenes-alimentos/{url}";
         }
-
-        // Si no se encuentra la imagen, puedes manejarlo de acuerdo a tus necesidades
+        
         return "/imagenes-alimentos/imagen-no-encontrada.jpg";
     }
 
@@ -121,9 +121,5 @@
         return stringBuilder.ToString().Normalize(NormalizationForm.FormC);
     }
 
-    public class Images
-    {
-        public string Name { get; set; }
-        public string Url { get; set; }
-    }
+    
 }
