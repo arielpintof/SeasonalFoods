@@ -1,0 +1,483 @@
+[
+  {
+    "name": "abastero",
+    "url": "abastero.jpg"
+  },
+  {
+    "name": "aceite maravilla",
+    "url": "aceite maravilla.jpg"
+  },
+  {
+    "name": "aceite vegetal",
+    "url": "aceite vegetal.png"
+  },
+  {
+    "name": "aceituna",
+    "url": "aceituna.jpg"
+  },
+  {
+    "name": "ajo",
+    "url": "ajo.jpg"
+  },
+  {
+    "name": "alcachofa",
+    "url": "alcachofa.jpg"
+  },
+  {
+    "name": "apio",
+    "url": "apio.jpg"
+  },
+  {
+    "name": "arandano (blue)",
+    "url": "arandano (blue).jpg"
+  },
+  {
+    "name": "arroz grano ancho grado 1",
+    "url": "arroz grano ancho grado 1.png"
+  },
+  {
+    "name": "arroz grano ancho grado 2",
+    "url": "arroz grano ancho grado 2.png"
+  },
+  {
+    "name": "arroz grano largo delgado grado 2",
+    "url": "arroz grano largo delgado grado 2.png"
+  },
+  {
+    "name": "arveja verde",
+    "url": "arveja verde.jpg"
+  },
+  {
+    "name": "arvejas verdes partidas",
+    "url": "arvejas verdes partidas.jpg"
+  },
+  {
+    "name": "asado carnicero",
+    "url": "asado carnicero.jpg"
+  },
+  {
+    "name": "asado de tira",
+    "url": "asado de tira.jpg"
+  },
+  {
+    "name": "asiento",
+    "url": "asiento.jpg"
+  },
+  {
+    "name": "azucar",
+    "url": "azucar.png"
+  },
+  {
+    "name": "brocoli",
+    "url": "brocoli.jpg"
+  },
+  {
+    "name": "cebolla",
+    "url": "cebolla.jpg"
+  },
+  {
+    "name": "cerdo costillar",
+    "url": "cerdo costillar.png"
+  },
+  {
+    "name": "cerdo lomo",
+    "url": "cerdo lomo.png"
+  },
+  {
+    "name": "cerdo pulpa",
+    "url": "cerdo pulpa.png"
+  },
+  {
+    "name": "cereza",
+    "url": "cereza.jpg"
+  },
+  {
+    "name": "chirimoya",
+    "url": "chirimoya.jpg"
+  },
+  {
+    "name": "choclillo",
+    "url": "choclillo.jpg"
+  },
+  {
+    "name": "choclo",
+    "url": "choclo.jpg"
+  },
+  {
+    "name": "chuleta (centro)",
+    "url": "chuleta (centro).png"
+  },
+  {
+    "name": "chuleta (parrillera)",
+    "url": "chuleta (parrillera).jpg"
+  },
+  {
+    "name": "ciruela",
+    "url": "ciruela.jpg"
+  },
+  {
+    "name": "coliflor",
+    "url": "coliflor.jpg"
+  },
+  {
+    "name": "cordero",
+    "url": "cordero.png"
+  },
+  {
+    "name": "damasco",
+    "url": "damasco.jpg"
+  },
+  {
+    "name": "desktop.ini",
+    "url": "desktop.ini"
+  },
+  {
+    "name": "durazno",
+    "url": "durazno.jpg"
+  },
+  {
+    "name": "esparragos",
+    "url": "esparragos.jpg"
+  },
+  {
+    "name": "espinaca",
+    "url": "espinaca.jpg"
+  },
+  {
+    "name": "estomaguillo (tapabarriga)",
+    "url": "estomaguillo (tapabarriga).png"
+  },
+  {
+    "name": "filete",
+    "url": "filete.jpg"
+  },
+  {
+    "name": "frambuesa",
+    "url": "frambuesa.jpg"
+  },
+  {
+    "name": "frutilla",
+    "url": "frutilla.jpg"
+  },
+  {
+    "name": "ganso",
+    "url": "ganso.png"
+  },
+  {
+    "name": "garbanzos sin piel",
+    "url": "garbanzos sin piel.jpg"
+  },
+  {
+    "name": "haba",
+    "url": "haba.jpg"
+  },
+  {
+    "name": "hallula integral",
+    "url": "hallula integral.png"
+  },
+  {
+    "name": "hallulla corriente",
+    "url": "hallulla corriente.png"
+  },
+  {
+    "name": "hallulla especial",
+    "url": "hallulla especial.png"
+  },
+  {
+    "name": "harina",
+    "url": "harina.png"
+  },
+  {
+    "name": "huachalomo",
+    "url": "huachalomo.png"
+  },
+  {
+    "name": "huevo blanco grande (primera)",
+    "url": "huevo blanco grande (primera).png"
+  },
+  {
+    "name": "huevo color grande (primera)",
+    "url": "huevo color grande (primera).png"
+  },
+  {
+    "name": "kiwi",
+    "url": "kiwi.jpg"
+  },
+  {
+    "name": "leche en polvo descremada",
+    "url": "leche en polvo descremada.png"
+  },
+  {
+    "name": "leche fluida descremada",
+    "url": "leche fluida descremada.png"
+  },
+  {
+    "name": "leche fluida entera",
+    "url": "leche fluida entera.png"
+  },
+  {
+    "name": "lechuga",
+    "url": "lechuga.jpg"
+  },
+  {
+    "name": "lentejas 6 mm",
+    "url": "lentejas 6 mm.jpg"
+  },
+  {
+    "name": "lentejas 6mm",
+    "url": "lentejas 6mm .jpg"
+  },
+  {
+    "name": "limon",
+    "url": "limon.jpg"
+  },
+  {
+    "name": "lomo liso",
+    "url": "lomo liso.png"
+  },
+  {
+    "name": "lomo vetado",
+    "url": "lomo vetado.png"
+  },
+  {
+    "name": "malaya",
+    "url": "malaya.jpg"
+  },
+  {
+    "name": "mandarina",
+    "url": "mandarina.jpg"
+  },
+  {
+    "name": "mango",
+    "url": "mango.jpg"
+  },
+  {
+    "name": "mantequilla con sal",
+    "url": "mantequilla con sal.png"
+  },
+  {
+    "name": "manzana roja",
+    "url": "manzana roja.jpg"
+  },
+  {
+    "name": "margarina",
+    "url": "margarina.png"
+  },
+  {
+    "name": "marraqueta",
+    "url": "marraqueta.png"
+  },
+  {
+    "name": "melon",
+    "url": "melon.jpg"
+  },
+  {
+    "name": "miel",
+    "url": "miel.png"
+  },
+  {
+    "name": "naranja",
+    "url": "naranja.jpg"
+  },
+  {
+    "name": "nectarin",
+    "url": "nectarin.jpg"
+  },
+  {
+    "name": "osobuco",
+    "url": "osobuco.jpg"
+  },
+  {
+    "name": "palanca",
+    "url": "palanca.jpg"
+  },
+  {
+    "name": "palta",
+    "url": "palta.jpg"
+  },
+  {
+    "name": "pan amasado",
+    "url": "pan amasado.png"
+  },
+  {
+    "name": "papa",
+    "url": "papa.jpg"
+  },
+  {
+    "name": "pavo osobuco",
+    "url": "pavo osobuco.png"
+  },
+  {
+    "name": "pavo pechuga",
+    "url": "pavo pechuga.png"
+  },
+  {
+    "name": "pavo truto ala",
+    "url": "pavo truto ala.png"
+  },
+  {
+    "name": "pavo truto corto",
+    "url": "pavo truto corto.png"
+  },
+  {
+    "name": "pepino ensalada",
+    "url": "pepino ensalada.jpg"
+  },
+  {
+    "name": "pera",
+    "url": "pera.jpg"
+  },
+  {
+    "name": "pimiento",
+    "url": "pimiento.jpg"
+  },
+  {
+    "name": "platano",
+    "url": "platano.png"
+  },
+  {
+    "name": "plateada",
+    "url": "plateada.jpg"
+  },
+  {
+    "name": "pollo entero",
+    "url": "pollo entero.png"
+  },
+  {
+    "name": "pollo ganso",
+    "url": "pollo ganso.jpg"
+  },
+  {
+    "name": "pollo pechuga deshuesada",
+    "url": "pollo pechuga deshuesada.png"
+  },
+  {
+    "name": "pollo truto entero",
+    "url": "pollo truto entero.png"
+  },
+  {
+    "name": "poroto blanco (inia)",
+    "url": "poroto blanco (inia).jpg"
+  },
+  {
+    "name": "poroto coscorron",
+    "url": "poroto coscorron.jpg"
+  },
+  {
+    "name": "poroto granado",
+    "url": "poroto granado.jpg"
+  },
+  {
+    "name": "poroto hallado",
+    "url": "poroto hallado.jpg"
+  },
+  {
+    "name": "poroto manteca",
+    "url": "poroto manteca.jpg"
+  },
+  {
+    "name": "poroto negro",
+    "url": "poroto negro.jpg"
+  },
+  {
+    "name": "poroto tortola",
+    "url": "poroto tortola.jpg"
+  },
+  {
+    "name": "poroto verde",
+    "url": "poroto verde.jpg"
+  },
+  {
+    "name": "poroto",
+    "url": "poroto.jpg"
+  },
+  {
+    "name": "posta negra",
+    "url": "posta negra.png"
+  },
+  {
+    "name": "posta paleta",
+    "url": "posta paleta.png"
+  },
+  {
+    "name": "posta rosada",
+    "url": "posta rosada.png"
+  },
+  {
+    "name": "punta de ganso",
+    "url": "punta de ganso.jpg"
+  },
+  {
+    "name": "punta paleta",
+    "url": "punta paleta.png"
+  },
+  {
+    "name": "punta picana",
+    "url": "punta picana.png"
+  },
+  {
+    "name": "queso chanco",
+    "url": "queso chanco.png"
+  },
+  {
+    "name": "queso gauda",
+    "url": "queso gauda.png"
+  },
+  {
+    "name": "queso mantecoso",
+    "url": "queso mantecoso.png"
+  },
+  {
+    "name": "quinoa",
+    "url": "quinoa.png"
+  },
+  {
+    "name": "repollo",
+    "url": "repollo.jpg"
+  },
+  {
+    "name": "sandia",
+    "url": "sandia.jpg"
+  },
+  {
+    "name": "sobrecostilla",
+    "url": "sobrecostilla.png"
+  },
+  {
+    "name": "spaghetti",
+    "url": "spaghetti.jpg"
+  },
+  {
+    "name": "tapapecho",
+    "url": "tapapecho.png"
+  },
+  {
+    "name": "tomate",
+    "url": "tomate.jpg"
+  },
+  {
+    "name": "tuna",
+    "url": "tuna.jpg"
+  },
+  {
+    "name": "uva",
+    "url": "uva.jpg"
+  },
+  {
+    "name": "yoghurt",
+    "url": "yoghurt.png"
+  },
+  {
+    "name": "zanahoria",
+    "url": "zanahoria.jpg"
+  },
+  {
+    "name": "zapallo italiano",
+    "url": "zapallo italiano.jpg"
+  },
+  {
+    "name": "zapallo",
+    "url": "zapallo.jpg"
+  }
+]
+

@@ -20,6 +20,7 @@
                   Quality="@item.Quality"
                   Price="@item.Price"
                   Region="@item.Region"
+                  Unit="@item.Unit"
                   ShopPlace="@item.ShopPlace"/>
     }
 
@@ -28,51 +29,5 @@
 
 
 @code{
-
-    private List<FoodItemTemporal> _foodList = new()
-    {
-        new FoodItemTemporal
-        {
-            Name = "Limón",
-            Variety = "Primera Amarillo",
-            Price = 1400,
-            LastUpdate = "10 de Noviembre",
-            Img = "https://www.nfrut.cl/wp-content/uploads/2018/09/Limon.jpg"
-        },
-        new FoodItemTemporal
-        {
-            Name = "Mandarina",
-            Variety = "Murcot Primera",
-            Price = 1200,
-            LastUpdate = "10 de Noviembre",
-            Img = "https://www.frutasbosquemar.cl/wp-content/uploads/2020/06/Mandarina.png"
-        },
-        new FoodItemTemporal
-        {
-            Name = "Limón",
-            Variety = "Primera Amarillo",
-            Price = 1400,
-            LastUpdate = "10 de Noviembre",
-            Img = "https://www.nfrut.cl/wp-content/uploads/2018/09/Limon.jpg"
-        },
-        new FoodItemTemporal
-        {
-            Name = "Mandarina",
-            Variety = "Murcot Primera",
-            Price = 1200,
-            LastUpdate = "10 de Noviembre",
-            Img = "https://www.frutasbosquemar.cl/wp-content/uploads/2020/06/Mandarina.png"
-        },
-    };
-
-
-    public class FoodItemTemporal
-    {
-        public string Name { get; set; } = string.Empty;
-        public int Price { get; set; }
-        public string Variety { get; set; } = string.Empty;
-        public string LastUpdate { get; set; } = string.Empty;
-        public string Img { get; set; } = string.Empty;
-    }
 
 }

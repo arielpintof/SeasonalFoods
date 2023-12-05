@@ -16,8 +16,6 @@ builder.Services.AddMudServices();
 builder.Services.AddMudExtensions();
 
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
-builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://127.0.0.1:8000/")});
-builder.Services.AddScoped<HttpClient>(sp => new HttpClient { BaseAddress = new Uri("https://127.0.0.1:8000/")});
 builder.Services.AddScoped<AdvancedSearchService>();
 
 builder.Services.AddHttpClient<IAdvancedSearchService, AdvancedSearchService>(client =>

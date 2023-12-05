@@ -3,7 +3,8 @@
 
 <DemoContainer>
     <ApexChart TItem="HistoricalData"
-               Options=Options>
+               Options="@Options"
+               Title="Precios promedios por tipo de comercio">
     
         <ApexPointSeries TItem="HistoricalData"
                          Items="ShopPrices"
@@ -14,8 +15,8 @@
                          Color="#CD5C5C"
         />
     </ApexChart>
+    
 </DemoContainer>
-
 
 @code {
     

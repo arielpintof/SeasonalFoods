@@ -1,12 +1,16 @@
 ﻿@using SeasonalFoods.Enums
+@using System.Text
+@using System.Globalization
+@using System.Net
 @inject NavigationManager NavigationManager
+@inject HttpClient Http
 
 <div class="food-container" @onclick="NavigateToFood">
     <div class="d-flex flex-row py-4 pr-10">
         <div class="d-flex justify-space-between flex-grow-1">
             <div class="d-flex flex-row gap-3">
                 <div class="image-container">
-                    <img alt="food-image" src="@Image"/>
+                    <img alt="@GetImagePath(Name)" src="@GetImagePath(Name)"/>
                 </div>
                 <div class="d-flex flex-column gap-1">
                     <div class="d-flex gap-1">
@@ -26,9 +30,15 @@
                 </div>
 
             </div>
-            <span>$@Convert.ToInt32(Price)</span>
+            <div class="d-flex flex-row gap-1 align-items-center">
+                <span class="price-font fw-bold">@Convert.ToInt32(Price)</span>
+                <span>@Unit</span>
+            </div>
+
         </div>
     </div>
+    
+    
 </div>
 
 
@@ -56,23 +66,64 @@
     public string ShopPlace { get; set; } = string.Empty;
 
     [Parameter]
+    public string Unit { get; set; } = string.Empty;
+
+    [Parameter]
     public decimal Price { get; set; }
 
     [Parameter]
     public bool Hovered { get; set; }
 
-    int QualityInt => IEnum<Qualities, QualityToken>
-        .FromReadableName(Quality)
-        .Value;
-    
-    int RegionInt => IEnum<Regions, RegionToken>
-        .FromReadableName(Region)
-        .Value;
+    int QualityInt => IEnum<Qualities, QualityToken>.FromReadableName(Quality).Value;
+
+    int RegionInt => IEnum<Regions, RegionToken>.FromReadableName(Region).Value;
 
     private void NavigateToFood()
     {
         NavigationManager.NavigateTo($"/alimentos/{Name}/{QualityInt}/{RegionInt}");
     }
-    
 
+    private Dictionary<string, string> imageDictionary { get; set; } = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        var imagesList = await Http.GetFromJsonAsync<List<Images>>("/imagenes-alimentos/images.json");
+        imageDictionary = imagesList.ToDictionary(image => image.Name.ToLower(), image => image.Url);
+    }
+
+    private string GetImagePath(string foodName)
+    {
+        var fileName = RemoveDiacritics(foodName.ToLower());
+
+        if (imageDictionary != null && imageDictionary.TryGetValue(fileName, out var url))
+        {
+            return $"/imagenes-alimentos/{url}";
+        }
+
+        // Si no se encuentra la imagen, puedes manejarlo de acuerdo a tus necesidades
+        return "/imagenes-alimentos/imagen-no-encontrada.jpg";
+    }
+
+    public string RemoveDiacritics(string text)
+    {
+        var normalizedString = text.Normalize(NormalizationForm.FormD);
+        var stringBuilder = new StringBuilder();
+
+        foreach (var c in normalizedString)
+        {
+            var unicodeCategory = CharUnicodeInfo.GetUnicodeCategory(c);
+            if (unicodeCategory != UnicodeCategory.NonSpacingMark)
+            {
+                stringBuilder.Append(c);
+            }
+        }
+
+        return stringBuilder.ToString().Normalize(NormalizationForm.FormC);
+    }
+
+    public class Images
+    {
+        public string Name { get; set; }
+        public string Url { get; set; }
+    }
 }

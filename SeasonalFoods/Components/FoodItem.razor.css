@@ -1,5 +1,5 @@
 
-strong, span{
+strong, .price-font{
     font-size: 18px;
 }
 .food-container :hover{
