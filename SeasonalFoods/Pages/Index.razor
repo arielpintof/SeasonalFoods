@@ -11,9 +11,9 @@
     <div class="content">
         <div class="container">
             <div class="info">
-                <h1 class="fw-bolder">Descubre el mundo de los alimentos de temporada con SeasonalFoods.</h1>
+                <h1 class="fw-bolder">Descubre el mundo de los alimentos de temporada con SeasonalFoods</h1>
                 <p>
-                    Encuentra información actualizada sobre precios y temporadas de productos regionales. Planifica tus compras de manera inteligente y disfruta de la frescura mientras ahorras. sino
+                    Encuentra información actualizada sobre precios y temporadas de productos regionales. Planifica tus compras de manera inteligente y disfruta de la frescura mientras ahorras.
                 </p>
                 <button class="fw-bolder" @onclick="NavigateToAdvancedSearch">Descubrir alimentos</button>
             </div>
@@ -50,12 +50,16 @@
                 .Select(g => new
                 {
                     Nombre = g.Key,
-                    Price = g.Min(f => f.Price)
+                    Price = g.Min(f => f.Price),
                 });
-            <div class="d-flex flex-row flex-grow-1 gap-3">
-                @foreach (var grupo in col)
+            
+            <div class="d-flex flex-row flex-wrap justify-center gap-3 mt-3"  style="max-width: 1000px">
+                @foreach (var group in col)
                 {
-                <FoodCard Name="@grupo.Nombre"></FoodCard>
+                    <FoodCard Name="@group.Nombre"
+                              Quality="1"
+                              Region="@Region.Value">
+                    </FoodCard>
                 }
             </div>
         }

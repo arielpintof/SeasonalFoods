@@ -1,22 +1,80 @@
-﻿<MudPaper Class="py-3 px-3" Style="max-width: 200px">
-    <MudStack>
-        <div class="image-container">
-            <img class="rounded" alt="@Image" src="@Image"/>
-        </div>
-        <span class="fw-bold">@Name</span>
-        <span>@Variety</span>
-    </MudStack>
-</MudPaper>
+﻿@using System.Globalization
+@using System.Net
+@using SeasonalFoods.Dto
+@using System.Text
+@inject HttpClient Http
+@inject NavigationManager NavigationManager
+
+
+
+<div class="food-container">
+    <MudPaper Class="py-3 px-3" Style="max-width: 200px" @onclick="NavigateToFood">
+        <MudStack>
+            <div class="image-container">
+                <img class="rounded" alt="@Image" src="@GetImagePath(Name)"/>
+            </div>
+            <span class="fw-bold">@Name</span>
+            <span>@Variety</span>
+        </MudStack>
+    </MudPaper>
+</div>
+
 
 @code {
-
     [Parameter]
     public string Name { get; set; } = string.Empty;
-
-
+    
+    [Parameter]
+    public int Quality { get; set; }  
+    
+    [Parameter]
+    public int Region { get; set; } 
+    
     public string Image => $"imagenes-alimentos/{Name}.jpg";
 
     [Parameter]
     public string Variety { get; set; } = string.Empty;
+    
+    private Dictionary<string, string> imageDictionary { get; set; } = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        var imagesList = await Http.GetFromJsonAsync<List<Images>>("/imagenes-alimentos/images.json");
+        imageDictionary = imagesList.ToDictionary(image => image.Name.ToLower(), image => image.Url);
+    }
+
+    private string GetImagePath(string foodName)
+    {
+        var fileName = RemoveDiacritics(foodName.ToLower());
+
+        if (imageDictionary != null && imageDictionary.TryGetValue(fileName, out var url))
+        {
+            return $"/imagenes-alimentos/{url}";
+        }
+        
+        return "/imagenes-alimentos/imagen-no-encontrada.jpg";
+    }
+
+    public string RemoveDiacritics(string text)
+    {
+        var normalizedString = text.Normalize(NormalizationForm.FormD);
+        var stringBuilder = new StringBuilder();
+
+        foreach (var c in normalizedString)
+        {
+            var unicodeCategory = CharUnicodeInfo.GetUnicodeCategory(c);
+            if (unicodeCategory != UnicodeCategory.NonSpacingMark)
+            {
+                stringBuilder.Append(c);
+            }
+        }
+
+        return stringBuilder.ToString().Normalize(NormalizationForm.FormC);
+    }
+    
+    private void NavigateToFood()
+    {
+        NavigationManager.NavigateTo($"/alimentos/{Name}/{Quality}/{Region}");
+    }
 
 }
